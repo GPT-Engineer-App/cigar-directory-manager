@@ -20,7 +20,8 @@ const Index = () => {
   const [newTag, setNewTag] = useState("");
 
   const handleAddCigar = () => {
-    setCigars([...cigars, newCigar]);
+    const cigarWithImage = { ...newCigar, images: newCigar.images.length > 0 ? newCigar.images : [] };
+    setCigars([...cigars, cigarWithImage]);
     setNewCigar({ brand: "", name: "", type: "", description: "", images: [], salesFormats: [], tags: [] });
   };
 
@@ -63,7 +64,7 @@ const Index = () => {
             <Input placeholder="Name" value={newCigar.name} onChange={(e) => setNewCigar({ ...newCigar, name: e.target.value })} />
             <Input placeholder="Type" value={newCigar.type} onChange={(e) => setNewCigar({ ...newCigar, type: e.target.value })} />
             <Textarea placeholder="Description" value={newCigar.description} onChange={(e) => setNewCigar({ ...newCigar, description: e.target.value })} />
-            <Input placeholder="Image URL" value={newCigar.images[0] || ""} onChange={(e) => setNewCigar({ ...newCigar, images: [e.target.value] })} />
+            <Input type="file" accept="image/*" onChange={(e) => setNewCigar({ ...newCigar, images: [URL.createObjectURL(e.target.files[0])] })} />
             <HStack>
               <Input placeholder="Tag" value={newTag} onChange={(e) => setNewTag(e.target.value)} />
               <IconButton aria-label="Add Tag" icon={<FaPlus />} onClick={handleAddTag} />
