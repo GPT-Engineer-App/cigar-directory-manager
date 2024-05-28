@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, VStack, HStack, Input, Button, Text, Box, Image, Tag, TagLabel, IconButton, Select, Textarea } from "@chakra-ui/react";
 import { FaTrash, FaPlus, FaSearch } from "react-icons/fa";
 
